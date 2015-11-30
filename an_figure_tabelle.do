@@ -1,8 +1,10 @@
 *set working directory
+clear all
+
 cd D:\Dati\Profili\e192470\Documents\DASBI\microsimulazione
 
 * preparo il file per salvare i risultati
-use risultati, replace
+use passaggiPrimoAnno/risultati20, replace
 drop if id==0
 
 
@@ -36,31 +38,6 @@ preserve
 
 
 restore 
-
-
-preserve 
-
-	collapse (max) fascia ,by(id)
-	gen one=1
-	collapse (sum) one, by(fascia)
-	gen id=1
-	replace one=one/10
-	reshape wide one, i(id) j(fascia)
-	
-	capture rename one0 fasciaC
-	capture rename one1 fasciaD
-	capture rename one2 fasciaE
-	capture rename one3 fasciaF
-	
-	graph bar (sum) fascia*,  stack percent nolabel legend(row(1)) ///
-		title("Termino la carriera in fascia")
-	graph export termineCarriera.pdf, replace
-
-	export excel using microsimulazione.xlsx, first(var) sheet("termino carriera in")
-
-
-restore 
-
 
 preserve 
 
