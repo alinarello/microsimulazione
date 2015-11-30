@@ -19,7 +19,7 @@ preserve
 		title("Distribuzione del salario") ///
 		legend(order(1 "5 pctile" 2 "25 pctile" 3 "MEDIANA" 4 "75 pctile" 5 "95 pctile") col(3))
 	
-	graph export percentili.pdf, replace
+	graph export percentili.png, replace
 
 
 restore
