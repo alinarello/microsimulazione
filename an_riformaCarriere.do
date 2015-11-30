@@ -31,10 +31,10 @@ forvalues x=0(1)30 {
 	capture confirmdir passaggiPrimoAnno
 	if `r(confirmdir)'==170 {
 		mkdir passaggiPrimoAnno
-		save passaggiPrimoAnno\risultati`x', replace
+		save passaggiPrimoAnno/risultati`x', replace
 		}
 	else {
-		save passaggiPrimoAnno\risultati`x', replace
+		save passaggiPrimoAnno/risultati`x', replace
 	}
 	
 	
@@ -320,8 +320,8 @@ forvalues x=0(1)30 {
 		*------------------------------------------------------------------------------*	
 
 		gen id=`id'
-		append using passaggiPrimoAnno\risultati`x'
-		save passaggiPrimoAnno\risultati`x', replace
+		append using passaggiPrimoAnno/risultati`x'
+		save passaggiPrimoAnno/risultati`x', replace
 
 	}
 }

@@ -5,7 +5,7 @@ set more off
 forvalues x=0(1)30 {
 
 * preparo il file per salvare i risultati
-	use passaggiPrimoAnno\risultati`x', replace
+	use passaggiPrimoAnno/risultati`x', replace
 	drop if id==0
 
 	* calcoliamo il salario medio dell'organizzazione
@@ -41,7 +41,7 @@ forvalues x=0(1)30 {
 
 forvalues x=0(1)30 {	
 * calcoliamo la distribuzione delle persone per fasce
-	use passaggiPrimoAnno\risultati`x', replace
+	use passaggiPrimoAnno/risultati`x', replace
 	drop if id==0
 	
 	collapse (count) persone_in_=livello, by(t fascia)
