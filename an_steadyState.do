@@ -1,10 +1,9 @@
 *set working directory
-*cd D:\Dati\Profili\e192470\Documents\DASBI\microsimulazione
 
 * preparo il file per salvare i risultati
 * qui si deve scegliere che file usare data la probabilita' passaggio primo anno
 
-use risultati, replace
+use passaggiPrimoAnno/risultati20, replace
 drop if id==0
 
 

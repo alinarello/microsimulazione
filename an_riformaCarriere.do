@@ -12,9 +12,6 @@ set more off
 capture log close
 
 
-cd D:\Dati\Profili\e192470\Documents\DASBI\microsimulazione
-
-
 * loop che va variare la probialità di passaggio al primo anno 
 * vedi riga 87 definizione della variabile
 

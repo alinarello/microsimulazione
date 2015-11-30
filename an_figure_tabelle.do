@@ -1,8 +1,6 @@
 *set working directory
 clear all
 
-cd D:\Dati\Profili\e192470\Documents\DASBI\microsimulazione
-
 * preparo il file per salvare i risultati
 use passaggiPrimoAnno/risultati20, replace
 drop if id==0

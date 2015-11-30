@@ -2,9 +2,6 @@
 clear all
 set more off
 
-cd D:\Dati\Profili\e192470\Documents\DASBI\microsimulazione\
-
-
 forvalues x=0(1)30 {
 
 * preparo il file per salvare i risultati
