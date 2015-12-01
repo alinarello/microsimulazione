@@ -1,23 +1,47 @@
+*! programma per la simulazione della riforma delle carriere
+*! versione 0.1
 
+program define riformaCarriere
 
-*set working directory
-clear all
-set more off
-capture log close
+	version 13.1
+	
+	syntax [anything] [, /// 
+						livello_min_C(real 3)  ///
+						livello_min_D(real 7)  ///
+						livello_min_E(real 1)  ///
+						anni_min_C(real 5)  ///
+						anni_min_D(real 1) ///
+						ppf_C(real .55) ///
+						ppf_D(real .2) ///
+						ppf_E(real .02) ///
+						passaAlPrimo(real .2) ///
+						passaAlSecondo(real 0.8) ///
+						passaLivelloEF(real 0.55 ) ///
+						max_livello_C(real 22) ///
+						max_livello_D(real 20) ///
+						max_livello_E(real 18) ///
+						max_livello_F(real 11) ///
+						c0_l1(real 40150) ///
+						d0_l1(real 53360) ///
+						e0_l1(real 81850) ///
+						f0_l1(real 134760) ///
+						deltaC(real 2190) ///
+						deltaD(real 4070) ///
+						deltaE(real 4070) ///
+						deltaF(real 5180) ///
+						indfunC(real 2000) ///
+						indfunD(real 7000) ///
+						indfunE(real 12500) ///
+						indfunF(real 21000) ///
+						indfunVariabile(real 1.0843) ///
+						numeroReplication(real 100) ///
+						vitaResidua(real 40) ///
+						livelloIniziale(real 1) ///
+						fasciaIniziale(real 0) ///
+						nomeFile(string) ///
+									]
 
-
-* parametri che si possono aggiungere 
-
-* ammontare scatto 
-* vita residua lavorativa
-* trascinamento anzianità grado
-
-*------------------------------------------------------------------------------*
-** CREO DATASET PER SALVARE RISULTATI SIMULAZIONE 
-*------------------------------------------------------------------------------*	
-
-* genero dataset per salvare i risultati della simulazione
-* li salvo in una cartella passaggiPrimoAnno
+quietly{									
 	clear all
 	set obs 1
 	
@@ -27,102 +51,8 @@ capture log close
 	gen wage=. 
 	gen id=0
 
-	save risultati, replace
-/*	
-	capture confirmdir passaggiPrimoAnno
-	if `r(confirmdir)'==170 {
-		mkdir passaggiPrimoAnno
-		save passaggiPrimoAnno/risultati`x', replace
-		}
-	else {
-		save passaggiPrimoAnno/risultati`x', replace
-	}
-
-*/	
-
-
-*------------------------------------------------------------------------------*
-** DEFINIZIONE VARIABILI - PASSAGGI DI FASCIA - 
-*------------------------------------------------------------------------------*
-* definizione criteri eligibility per passaggi di fascia
-** in termini di livello
-	local livello_min_C=3
-	local livello_min_D=7
-	local livello_min_E=1
-** in termini di anni
-	local anni_min_C=5
-	local anni_min_D=1
-
-* definizione probabilità passaggio di fascia
-/* su un centinaio di partecipanti ne passano una sessantina*/
-	local ppf_C=.55
-/* su 150 partecipanti 30 voti utili */
-	local ppf_D=.2
-/* qui ???? ma possiamo dedurre da distribuzione ex-post */
-	local ppf_E=.02
-
-*------------------------------------------------------------------------------*
-** DEFINIZIONE VARIABILI - PASSAGGI DI LIVELLO -
-*------------------------------------------------------------------------------*
-* probabilita passaggio di livello per fasce C e D
-	local passaAlPrimo=.2
-	local passaAlSecondo=0.8
-
-* probabilita passaggio di livello per fasce E e F
-	local passaLivelloEF=0.55 
-
-*------------------------------------------------------------------------------*
-** DEFINIZIONE VARIABILI - NUMERO LIVELLI MAX PER FASCIA
-*------------------------------------------------------------------------------*
-
-	local max_livello_C=22
-	local max_livello_D=20
-	local max_livello_E=18
-	local max_livello_F=11
-
-*------------------------------------------------------------------------------*
-** DEFINIZIONE VARIABILI - LIVELLI STIPENDIALI BASE PER FASCIA - 
-*------------------------------------------------------------------------------*
-
-	local c0_l1=40150
-	local d0_l1=53360
-	local e0_l1=81850
-	local f0_l1=134760
-
-*------------------------------------------------------------------------------*
-** DEFINIZIONE VARIABILI - AMPIEZZA DEI LIVELLI - 
-*------------------------------------------------------------------------------*
-
-	local deltaC=2190
-	local deltaD=4070
-	local deltaE=4070
-	local deltaF=5180
-	
-*------------------------------------------------------------------------------*
-** DEFINIZIONE VARIABILI - INDENNITA' FUNZIONE - 
-*------------------------------------------------------------------------------*
-** PARTE FISSA
-
-	local indfunC=2000
-	local indfunD=7000
-	local indfunE=12500
-	local indfunF=21000
-	
-** PARTE VARIABILE	
-	local indfunVariabile=1.0843
-	
-*------------------------------------------------------------------------------*
-** DEFINIZIONE VARIABILI - PARAMETRI SIMULAZIONE 
-*------------------------------------------------------------------------------*
-	local numeroReplication=100
-	local vitaResidua=40
-	local livelloIniziale=1
-	local fasciaIniziale=0
-*------------------------------------------------------------------------------*
-
-	* numero di repliche della simulazione per ciascuna probabilità di passaggio
-	* al primo anno - per ora rimaniamo a 1000
-	
+	save `nomeFile', replace
+									
 	forvalues id=1(1)`numeroReplication'{
 
 		* genero dataset con numero di osservazioni (che corrispondono alla vita lavorativa residua)
@@ -343,8 +273,9 @@ capture log close
 		*------------------------------------------------------------------------------*	
 
 		gen id=`id'
-		append using risultati
-		save risultati, replace
+		append using `nomeFile'
+		save `nomeFile', replace
 
 	}
-*}
+}									
+end

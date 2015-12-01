@@ -1,0 +1,185 @@
+/* 
+  First version of mygenerate.dlg
+*/  
+
+
+VERSION 13.1
+
+POSITION . . 820 820
+
+DIALOG main, label("microsimulazione - Riforma delle Carriere") tabtitle("Main")
+BEGIN
+  TEXT     tx_gen01      				210   10   .   .,	label("Fascia C")
+  TEXT     tx_gen02      				340   10   .  .,	label("Fascia D")
+  TEXT     tx_gen03      				470   10   .  .,	label("Fascia E")
+  TEXT     tx_gen04      				600   10   .  .,	label("Fascia F")
+  
+  TEXT     tx_gen2      				10   40  .  .,	label("Livello stipendiale iniziale")
+  EDIT     c0_l1			      	+200 40 50  .,	default("40150")
+  EDIT     d0_l1			      	+130 40 50  .,	default("53360")
+  EDIT     e0_l1			      	+130 40 50  .,	default("81850")
+  EDIT     f0_l1			      	+130 40 50  .,	default("134760")
+
+  TEXT     tx_gen3      				10   70   .  .,	label("Scatto Livello")
+  EDIT     deltaC			      	+200 70  50  .,	default("2190")
+  EDIT     deltaD			      	+130 70  50  .,	default("4070")
+  EDIT     deltaE			      	+130 70  50  .,	default("4070")
+  EDIT     deltaF			      	+130 70  50  .,	default("5180")
+
+  TEXT     tx_gen4      				10   100  .  .,	label("Numero massimo livelli")
+  EDIT     max_livello_C		      	+200 100  50  .,	default("22")
+  EDIT     max_livello_D		     	+130 100  50  .,	default("20")
+  EDIT     max_livello_E			   	+130 100  50  .,	default("18")
+  EDIT     max_livello_F			   	+130 100  50  .,	default("11")
+
+  TEXT     tx_gen5      				10   130  .  .,	label("Indennita' di funzione fissa")
+  EDIT     indfunC			      	+200 130  50  .,	default("2000")
+  EDIT     indfunD			     	+130 130  50  .,	default("7000")
+  EDIT     indfunE				   	+130 130  50  .,	default("12500")
+  EDIT     indfunF				   	+130 130  50  .,	default("21000") 
+
+  TEXT     tx_gen6      				10   160  .  .,	label("Indennita' di funzione variabile")
+  EDIT     indfunVariabile		      	+200 160  440  .,	default("1.0843")
+  *EDIT     ed_nome62			     	+130 160  50  .,	default("1.0843")
+  *EDIT     ed_nome63				   	+130 160  50  .,	default("1.0843")
+  *EDIT     ed_nome64				   	+130 160  50  .,	default("1.0843") 
+
+  TEXT     tx_gen70      				10   190  .  .,	label("PROBABILITA' PASSAGGIO ALLA FASCIA SUCCESSIVA")
+ 
+  TEXT     tx_gen7      				10   210  .  .,	label("Probabilita'")
+  EDIT     ppf_C			      	+200 210  50  .,	default(".55")
+  EDIT     ppf_D			     	+130 210  50  .,	default(".2")
+  EDIT     ppf_E				   	+130 210  50  .,	default(".02")
+  *EDIT     ed_nome74				   	+130 210  50  .,	default("40")   
+
+  TEXT     tx_gen80      				10   240  .  .,	label("REQUISITI PER PASSAGGIO DI FASCIA")
+ 
+  TEXT     tx_gen8      				10   270  .  .,	label("Livello minimo")
+  EDIT     livello_min_C			      	+200 270  50  .,	default("3")
+  EDIT     livello_min_D			     	+130 270  50  .,	default("7")
+  EDIT     livello_min_E				   	+130 270  50  .,	default("1")
+  *EDIT     ed_nome84				   	+130 270  50  .,	default("40")    
+
+  TEXT     tx_gen9      				10   300  .  .,	label("Anni permanenza in fascia")
+  EDIT     anni_min_C			      	+200 300  50  .,	default("5")
+  EDIT     anni_min_D			     	+130 300  50  .,	default("1")
+  *EDIT     ed_nome93				   	+130 300  50  .,	default("40")
+  *EDIT     ed_nome94				   	+130 300  50  .,	default("40")    
+
+  TEXT     tx_gen10      				10   330  .  .,	label("Livelli maturati in Fascia")
+  *EDIT     ed_nome101			      	+200 330  50  .,	default("40")
+  EDIT     ed_nome102			     	+330 330  50  .,	default("3")
+  *EDIT     ed_nome103				   	+130 330  50  .,	default("40")
+  *EDIT     ed_nome104				   	+130 330  50  .,	default("40")      
+
+  TEXT     tx_gen110      				10   360  .  .,	label("PROBABILITA' PASSAGGIO LIVELLO")
+
+  TEXT     tx_gen11      				10   390  .  .,	label("Al primo anno")
+  EDIT     passaAlPrimo			      	+200 390  180  .,	default(".2")
+  *EDIT     ed_nome112			     	+130 390  50  .,	default(".2")
+  EDIT     passaLivelloEF				   	+260 390  180  .,	default(".55")
+  *EDIT     ed_nome114				   	+130 390  50  .,	default(".55")     
+ 
+  TEXT     tx_gen12      				10   420  .  .,	label("Al Secondo anno")
+  EDIT     passaAlSecondo			      	+200 420  180  .,	default(".8")
+  *EDIT     ed_nome122			     	+130 420  50  .,	default(".8")
+  *EDIT     ed_nome123				   	+130 420  50  .,	default("40")
+  *EDIT     ed_nome124				   	+130 420  50  .,	default("40")    
+
+  TEXT     tx_gen13      				10   470  .  .,	label("PARAMETRI PER LA SIMULAZIONE")
+  
+  TEXT     tx_gen14      				10   500  .  .,	label("Fascia Iniziale: (0 = C , 1 = D , 2 = E , 3 = F )")
+  EDIT     fasciaIniziale			      	+300 500  50  .,	default("0")
+
+  TEXT     tx_gen15      				10   530  .  .,	label("Livello Iniziale")
+  EDIT     livelloIniziale			      	+300 530  50  .,	default("1")
+
+  TEXT     tx_gen16      				10   560  .  .,	label("Anni residui vita lavorativa")
+  EDIT     vitaResidua			      	+300 560  50  .,	default("40")  
+
+  TEXT     tx_gen17      				10   590  .  .,	label("Numero simulazioni")
+  EDIT     numeroReplication			+300 590  50  .,	default("100")  
+  
+  TEXT     tx_gen18      				10   620  .  .,	label("Nome file per salvare i risultati della simulazione:")
+  EDIT     nomeFile						+300 620  100  .,	error("Devi specificare il nome del file") 
+  
+END
+
+OK ok1,      label("OK")
+CANCEL can1, label("Cancel")
+SUBMIT sub1, label("Submit")
+HELP hlp1,   view("help generate")
+RESET res1
+COPY copy1
+
+PROGRAM command
+BEGIN
+    put "riformaCarriere , "
+	put " livello_min_C("
+	put	main.livello_min_C ") "
+	put	" livello_min_D("
+	put	main.livello_min_D ")"
+	put	" livello_min_E("
+	put	main.livello_min_E ")"
+	put	" anni_min_C(" 
+	put	main.anni_min_C ") "
+	put	" anni_min_D(" 
+	put	main.anni_min_D ") "
+	put	" ppf_C(" 
+	put	main.ppf_C ") "
+	put	" ppf_D(" 
+	put	main.ppf_D ") "
+	put	" ppf_E(" 
+	put	main.ppf_E ") "
+	put	" passaAlPrimo(" 
+	put	main.passaAlPrimo ") "
+	put	" passaAlSecondo(" 
+	put	main.passaAlSecondo ") "
+	put	" passaLivelloEF(" 
+	put	main.passaLivelloEF ") "
+	put	" max_livello_C(" 
+	put	main.max_livello_C ") "
+	put	" max_livello_D(" 
+	put	main.max_livello_D ") "
+	put	" max_livello_E(" 
+	put	main.max_livello_E ") "
+	put	" max_livello_F(" 
+	put	main.max_livello_F ") "
+	put	" c0_l1(" 
+	put	main.c0_l1 ") "
+	put	" d0_l1(" 
+	put	main.d0_l1 ") "
+	put	" e0_l1(" 
+	put	main.e0_l1 ") "
+	put	" f0_l1(" 
+	put	main.f0_l1 ") "
+	put	" deltaC(" 
+	put	main.deltaC ") "
+	put	" deltaD(" 
+	put	main.deltaD ") "
+	put	" deltaE(" 
+	put	main.deltaE ") "
+	put	" deltaF(" 
+	put	main.deltaF ") "
+	put	" indfunC(" 
+	put	main.indfunC ") "
+	put	" indfunD(" 
+	put	main.indfunD ") "
+	put	" indfunE(" 
+	put	main.indfunE ") "
+	put	" indfunF(" 
+	put	main.indfunF ") "
+	put	" indfunVariabile(" 
+	put	main.indfunVariabile ") "
+	put	" numeroReplication(" 
+	put	main.numeroReplication ") "
+	put	" vitaResidua("
+	put	main.vitaResidua ") "
+	put	" livelloIniziale(" 
+	put	main.livelloIniziale ") "
+	put	" fasciaIniziale(" 
+	put	main.fasciaIniziale ") "
+	require main.nomeFile
+	put	" nomeFile("
+	put	main.nomeFile ") "
+END
